@@ -73,9 +73,9 @@ class Net(nn.Module):
         z = F.leaky_relu(self.fc1(z))
         z = F.leaky_relu(self.fc2(z))
         
-        return self.fc3(z)
+        z = self.fc3(z)
         #z = self.sigmoid(self.fc3(z)) # [0, 1]
-        #return z  # map to [1, -1]
+        return z  # map to [1, -1]
     
    
     # input: x_t, x_t+1

@@ -15,7 +15,7 @@ from load_data import load_data
 from RGBDataset_10 import RGBDataset
 import os
 
-from EPN_10 import Net, loss_function
+from CNN import Net, loss_function
 #conda activate f_frcnn_py36
 
 # loss_function(mu, logvar, mu_next, logvar_next, z_next, z_next_h, action, action_next, action_exp, action_exp_next)

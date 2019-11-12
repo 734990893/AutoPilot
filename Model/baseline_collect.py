@@ -68,7 +68,7 @@ import cv2  # for resizing image
 
 ##CNN
 #from VCNN import Net
-from CNN import Net
+from baseline import Net
 
 ## PID controler as expert
 from basic_agent import BasicAgent
@@ -474,31 +474,7 @@ def game_loop(args):
                     world.parse_image_custom(display, img_lidar, 'Lidar')
                     # if ret[3]:
                     #     world.on_collision(ret[3])
-                    '''
-                    ## Lidar
-                    tst_inputs = np.frombuffer(img_lidar.raw_data, dtype=np.dtype('f4'))
-                    tst_inputs = np.reshape(tst_inputs, (int(tst_inputs.shape[0] / 3), 3))
-                    tst_inputs = np.asarray(tst_inputs, dtype=np.float32)
 
-                    # test if there's large points
-                    sum_ = np.sum(np.absolute(tst_inputs), axis=1)
-                    mask = np.logical_and(sum_ < 50*3, sum_ > 0.0001)
-                    pts_filter = tst_inputs[mask]
-                    
-                    if(pts_filter.shape != tst_inputs.shape):
-                        print('pts filter : pts =', pts_filter.shape, tst_inputs.shape)
-                    
-                    tst_inputs = torch.from_numpy(tst_inputs)
-                    #print(tst_inputs.shape)
-                    
-                    tst_inputs = tst_inputs[0:1900,:]   #
-                    
-                    tst_inputs = tst_inputs.unsqueeze(0)
-                    tst_inputs = tst_inputs.transpose(2, 1)
-                    tst_inputs = tst_inputs.cuda()
-                    
-                    points = tst_inputs
-                    '''
                     #print(tst_inputs)
                     
                     ## images
