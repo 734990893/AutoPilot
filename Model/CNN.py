@@ -52,17 +52,17 @@ class Net(nn.Module):
     def encode(self, x):
         # Max pooling over a (2, 2) window
         x = self.conv1(x)  
-        x = F.max_pool2d(F.leaky_relu(x), (2, 2)) # 90 * 90 * 64
-        x = F.max_pool2d(F.leaky_relu(self.conv2(x)), 2)  # 45 * 45 * 64
-        x = F.max_pool2d(F.leaky_relu(self.conv3(x)), 2)  # 9 * 9 * 64
-        x = F.max_pool2d(F.leaky_relu(self.conv4(x)), 2)  # 3 * 3 * 64
-        x = F.max_pool2d(F.leaky_relu(self.conv5(x)), 2)  # 3 * 3 * 64        
+        x = F.max_pool2d(F.relu(x), (2, 2)) # 90 * 90 * 64
+        x = F.max_pool2d(F.relu(self.conv2(x)), 2)  # 45 * 45 * 64
+        x = F.max_pool2d(F.relu(self.conv3(x)), 2)  # 9 * 9 * 64
+        x = F.max_pool2d(F.relu(self.conv4(x)), 2)  # 3 * 3 * 64
+        x = F.max_pool2d(F.relu(self.conv5(x)), 2)  # 3 * 3 * 64        
         #print(x.shape)  # torch.Size([100, 64, 3, 3])
         
         x = x.view(-1, self.num_flat_features(x))
         
-        #x = F.leaky_relu(self.fc01(x))
-        #x = F.leaky_relu(self.fc02(x))
+        #x = F.relu(self.fc01(x))
+        #x = F.relu(self.fc02(x))
 
         return x
    
@@ -70,8 +70,8 @@ class Net(nn.Module):
     # TODO action decoder too small?
     def action_decode(self, z):
         #print(z.shape)
-        z = F.leaky_relu(self.fc1(z))
-        z = F.leaky_relu(self.fc2(z))
+        z = F.relu(self.fc1(z))
+        z = F.relu(self.fc2(z))
         
         z = self.fc3(z)
         #z = self.sigmoid(self.fc3(z)) # [0, 1]
